@@ -15,6 +15,7 @@ import {
   AlertTriangle,
   Search,
   Zap,
+  Filter,
 } from 'lucide-react';
 
 /* ------------------------------------------------------------------ */
@@ -267,7 +268,6 @@ function MatchOverlay({
           You and {factory.name} are a great fit.
         </p>
 
-        {/* Avatars */}
         <div className="flex justify-center items-center gap-4 mb-6">
           <div className="w-16 h-16 rounded-full bg-coral/10 flex items-center justify-center text-coral font-bold text-xl">
             B
@@ -334,7 +334,6 @@ function BrandDashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <h1 className="text-3xl font-playfair font-bold text-navy">
           Your Matches
@@ -357,7 +356,6 @@ function BrandDashboard() {
         </div>
       </div>
 
-      {/* Progress bar */}
       <div className="w-full h-2 bg-mist rounded-full overflow-hidden">
         <motion.div
           className="h-full bg-coral rounded-full"
@@ -367,7 +365,6 @@ function BrandDashboard() {
         />
       </div>
 
-      {/* Card Stack */}
       <div className="flex justify-center py-8">
         <AnimatePresence mode="wait">
           <motion.div
@@ -378,7 +375,6 @@ function BrandDashboard() {
             exit={{ opacity: 0, y: -30, scale: 0.95 }}
             transition={{ duration: 0.3 }}
           >
-            {/* Gradient Top */}
             <div
               className={`h-48 bg-gradient-to-br ${factory.gradient} relative`}
             >
@@ -397,7 +393,6 @@ function BrandDashboard() {
               </div>
             </div>
 
-            {/* Content */}
             <div className="p-6">
               <h3 className="text-xl font-bold text-navy mb-3">
                 {factory.name}
@@ -423,7 +418,6 @@ function BrandDashboard() {
                 </span>
               </div>
 
-              {/* Match Score */}
               <div className="flex items-center justify-center mb-6">
                 <div className="w-20 h-20 rounded-full border-4 border-teal flex items-center justify-center">
                   <div className="text-center">
@@ -437,7 +431,6 @@ function BrandDashboard() {
                 </div>
               </div>
 
-              {/* Actions */}
               <div className="flex justify-center gap-6">
                 <motion.button
                   className="w-16 h-16 rounded-full bg-slate/10 flex items-center justify-center hover:bg-slate/20 transition"
@@ -465,7 +458,6 @@ function BrandDashboard() {
         </AnimatePresence>
       </div>
 
-      {/* Counter dots */}
       <div className="flex justify-center gap-2">
         {FACTORIES.map((f, i) => (
           <div
@@ -477,7 +469,6 @@ function BrandDashboard() {
         ))}
       </div>
 
-      {/* Match Overlay */}
       <AnimatePresence>
         {showMatch && (
           <MatchOverlay factory={factory} onClose={handleNextMatch} />
@@ -502,7 +493,6 @@ function ManufacturerDashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Stats Row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           {
@@ -552,7 +542,6 @@ function ManufacturerDashboard() {
         ))}
       </div>
 
-      {/* Capacity Widget */}
       <div className="bg-white rounded-xl p-6 shadow-sm border border-mist">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
@@ -611,7 +600,6 @@ function ManufacturerDashboard() {
             </button>
           ))}
         </div>
-        {/* Day selector */}
         <div className="flex gap-2">
           {days.map((day, i) => (
             <button
@@ -629,7 +617,6 @@ function ManufacturerDashboard() {
         </div>
       </div>
 
-      {/* Match Notifications */}
       <div className="bg-white rounded-xl p-6 shadow-sm border border-mist">
         <h3 className="font-bold text-navy mb-4 flex items-center gap-2">
           <Star size={18} className="text-amber-400" fill="#fbbf24" />
@@ -682,7 +669,6 @@ function ManufacturerDashboard() {
         </div>
       </div>
 
-      {/* Brands Table */}
       <div className="bg-white rounded-xl shadow-sm border border-mist overflow-hidden">
         <div className="p-4 border-b border-mist flex items-center justify-between">
           <h3 className="font-bold text-navy">Brand Inquiries</h3>
@@ -765,7 +751,6 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-warm-sand">
       <div className="max-w-6xl mx-auto px-4 py-8">
-        {/* View Toggle */}
         <div className="flex justify-center mb-8">
           <div className="bg-white rounded-xl p-1 shadow-sm border border-mist inline-flex">
             <button
@@ -793,7 +778,6 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* View Content */}
         <AnimatePresence mode="wait">
           <motion.div
             key={view}
