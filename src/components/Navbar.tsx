@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Factory, Shirt } from 'lucide-react'
+import { Menu, X, Factory } from 'lucide-react'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -34,7 +34,6 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-teal rounded-lg flex items-center justify-center">
               <Factory className="w-5 h-5 text-white" />
@@ -44,7 +43,6 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8">
             {links.map((link) => (
               <Link
@@ -62,7 +60,6 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile Hamburger */}
           <button
             className="md:hidden p-2"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -76,7 +73,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
