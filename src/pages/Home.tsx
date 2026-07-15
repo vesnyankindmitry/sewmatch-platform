@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import { Link } from 'react-router'
 import { motion, useInView } from 'framer-motion'
 import {
@@ -7,38 +7,16 @@ import {
   FileText,
   Search,
   CheckCircle,
-  Star,
   ChevronDown,
   ArrowRight,
   Check,
+  Layers,
+  Cpu,
+  Target,
+  BarChart3,
+  Settings,
+  Sparkles,
 } from 'lucide-react'
-
-/* ------------------------------------------------------------------ */
-/*  Animated Counter                                                   */
-/* ------------------------------------------------------------------ */
-function AnimatedCounter({ target, suffix = '', prefix = '' }: { target: number; suffix?: string; prefix?: string }) {
-  const [count, setCount] = useState(0)
-  const ref = useRef<HTMLSpanElement>(null)
-  const inView = useInView(ref, { once: true })
-
-  useEffect(() => {
-    if (!inView) return
-    let current = 0
-    const step = target / 60
-    const timer = setInterval(() => {
-      current += step
-      if (current >= target) {
-        setCount(target)
-        clearInterval(timer)
-      } else {
-        setCount(Math.floor(current))
-      }
-    }, 16)
-    return () => clearInterval(timer)
-  }, [inView, target])
-
-  return <span ref={ref}>{prefix}{count.toLocaleString()}{suffix}</span>
-}
 
 /* ------------------------------------------------------------------ */
 /*  Fade In Section                                                    */
@@ -75,7 +53,7 @@ export default function Home() {
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
             className="text-teal text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] mb-6">
-            The Smart Way to Source Manufacturing
+            B2B Manufacturing Sourcing Platform
           </motion.p>
 
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
@@ -85,8 +63,8 @@ export default function Home() {
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
             className="text-white/70 text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-            SewMatch connects Private Label brands with verified OEM textile manufacturers.
-            Create tech specs, get AI-matched, and start production — all in one platform.
+            OEM Match connects Private Label brands with verified OEM textile manufacturers.
+            Structured tech specs, AI-powered matching, and direct communication — all in one place.
           </motion.p>
 
           {/* Dual CTA Cards */}
@@ -115,39 +93,11 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          {/* Trust bar */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}
-            className="text-white/50 text-xs sm:text-sm flex items-center justify-center gap-2">
-            <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-            <span>Trusted by 2,000+ brands & 500+ factories across the US</span>
-          </motion.div>
-
           {/* Scroll indicator */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, y: [0, 8, 0] }} transition={{ delay: 0.8, repeat: Infinity, duration: 2 }}
             className="absolute bottom-8 left-1/2 -translate-x-1/2">
             <ChevronDown className="w-6 h-6 text-white/40" />
           </motion.div>
-        </div>
-      </section>
-
-      {/* ========== STATISTICS ========== */}
-      <section className="py-16 sm:py-20 bg-warm-sand">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { value: 67, suffix: '%', label: 'of brands struggle to find manufacturing' },
-              { value: 48, suffix: 'B', prefix: '$', label: 'US reshoring market' },
-              { value: 10000, suffix: '+', label: 'US apparel factories' },
-              { value: 62, suffix: '%', label: 'want domestic production' },
-            ].map((stat, i) => (
-              <FadeIn key={i} delay={i * 0.1} className="text-center">
-                <div className="font-playfair text-3xl sm:text-4xl font-bold text-navy mb-2">
-                  <AnimatedCounter target={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
-                </div>
-                <p className="text-slate text-xs sm:text-sm leading-relaxed">{stat.label}</p>
-              </FadeIn>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -164,10 +114,10 @@ export default function Home() {
             <div className="hidden lg:block absolute top-12 left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-teal via-teal/50 to-teal/20" />
 
             {[
-              { icon: FileText, num: '01', title: 'Fill Your Tech Spec', desc: 'Answer questions about your product, fabric, quantity, and quality requirements.' },
-              { icon: Search, num: '02', title: 'AI Matching', desc: 'Our algorithm finds the best manufacturers based on your specifications.' },
-              { icon: CheckCircle, num: '03', title: 'Review Factories', desc: 'Browse matched manufacturer profiles with specs, capacity, and certifications.' },
-              { icon: Factory, num: '04', title: 'Start Production', desc: 'Connect via chat, finalize details, and begin manufacturing.' },
+              { icon: FileText, num: '01', title: 'Fill Your Tech Spec', desc: 'Describe your product, fabric, quantity, and quality requirements through a structured 6-step form.' },
+              { icon: Search, num: '02', title: 'AI Matching', desc: 'Our algorithm scores compatibility across 5 dimensions and surfaces the best-fitting manufacturers.' },
+              { icon: CheckCircle, num: '03', title: 'Review Factories', desc: 'Browse detailed manufacturer profiles with equipment, capacity, certifications, and specializations.' },
+              { icon: Factory, num: '04', title: 'Start Production', desc: 'Connect via chat, exchange files, finalize terms, and begin manufacturing — all in-platform.' },
             ].map((step, i) => (
               <FadeIn key={i} delay={i * 0.15} className="relative">
                 <div className="text-center">
@@ -184,6 +134,246 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ========== TECH SPEC CONSTRUCTOR ========== */}
+      <section className="py-16 sm:py-24 bg-warm-sand">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <FadeIn>
+              <p className="text-coral text-xs font-semibold uppercase tracking-[0.2em] mb-3">For Brands</p>
+              <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-navy mb-4">
+                Structured Tech Spec Constructor
+              </h2>
+              <p className="text-slate mb-6 leading-relaxed">
+                No more scattered emails and unclear requirements. Our 6-step constructor guides you through every detail manufacturers need to quote accurately.
+              </p>
+              <div className="space-y-3 mb-8">
+                {[
+                  { label: 'Account Info', desc: 'Company, marketplace, contact details' },
+                  { label: 'Product Definition', desc: 'Category, style type, construction details' },
+                  { label: 'Fabric Specification', desc: 'Material, GSM, color, finishing' },
+                  { label: 'Quantity & Timeline', desc: 'Order size, MOQ range, deadline' },
+                  { label: 'Quality Requirements', desc: 'AQL level, certifications needed' },
+                  { label: 'Preferences', desc: 'Location, budget, shipping' },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-teal text-xs font-bold">{i + 1}</span>
+                    </div>
+                    <div>
+                      <span className="font-semibold text-navy text-sm">{item.label}</span>
+                      <span className="text-slate text-sm"> — {item.desc}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <Link to="/brand-register" className="inline-flex items-center gap-2 bg-coral hover:bg-coral/90 text-white px-6 py-3 rounded-lg font-medium text-sm transition-all hover:scale-[1.02]">
+                Create Your Tech Spec <ArrowRight className="w-4 h-4" />
+              </Link>
+            </FadeIn>
+
+            <FadeIn delay={0.2}>
+              {/* Mock Tech Spec Preview */}
+              <div className="bg-white rounded-xl shadow-card border border-mist overflow-hidden">
+                <div className="bg-navy px-4 py-3 flex items-center justify-between">
+                  <span className="text-white font-semibold text-sm">Tech Spec Preview</span>
+                  <div className="flex gap-1.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                  </div>
+                </div>
+                <div className="p-5 space-y-4">
+                  <div className="flex items-center gap-2 text-teal text-xs font-semibold uppercase tracking-wider mb-3">
+                    <FileText className="w-4 h-4" />
+                    Activewear Leggings — Tech Spec #042
+                  </div>
+                  <div className="grid grid-cols-2 gap-3 text-xs">
+                    <div className="bg-warm-sand rounded-lg p-3">
+                      <div className="text-slate mb-1">Product Category</div>
+                      <div className="font-semibold text-navy">Activewear</div>
+                    </div>
+                    <div className="bg-warm-sand rounded-lg p-3">
+                      <div className="text-slate mb-1">Style Type</div>
+                      <div className="font-semibold text-navy">Leggings</div>
+                    </div>
+                    <div className="bg-warm-sand rounded-lg p-3">
+                      <div className="text-slate mb-1">Fabric</div>
+                      <div className="font-semibold text-navy">Nylon-Spandex, 220 GSM</div>
+                    </div>
+                    <div className="bg-warm-sand rounded-lg p-3">
+                      <div className="text-slate mb-1">Quantity</div>
+                      <div className="font-semibold text-navy">800 units</div>
+                    </div>
+                    <div className="bg-warm-sand rounded-lg p-3">
+                      <div className="text-slate mb-1">Timeline</div>
+                      <div className="font-semibold text-navy">6–8 weeks</div>
+                    </div>
+                    <div className="bg-warm-sand rounded-lg p-3">
+                      <div className="text-slate mb-1">AQL Level</div>
+                      <div className="font-semibold text-navy">2.5 (Standard)</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 pt-2 border-t border-mist">
+                    <CheckCircle className="w-4 h-4 text-teal" />
+                    <span className="text-xs text-slate">6 of 6 sections completed</span>
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== MANUFACTURER PROFILE ========== */}
+      <section className="py-16 sm:py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <FadeIn className="order-2 lg:order-1">
+              {/* Mock Manufacturer Profile Preview */}
+              <div className="bg-white rounded-xl shadow-card border border-mist overflow-hidden">
+                <div className="bg-gradient-to-r from-teal to-navy px-4 py-3 flex items-center justify-between">
+                  <span className="text-white font-semibold text-sm">Manufacturer Profile Preview</span>
+                  <div className="flex gap-1.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                  </div>
+                </div>
+                <div className="p-5 space-y-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-teal/10 rounded-lg flex items-center justify-center">
+                      <Factory className="w-5 h-5 text-teal" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-navy text-sm">Pacific Cut & Sew</div>
+                      <div className="text-xs text-teal font-medium">Verified Manufacturer</div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3 text-xs">
+                    <div className="bg-warm-sand rounded-lg p-3">
+                      <div className="text-slate mb-1">Location</div>
+                      <div className="font-semibold text-navy">Los Angeles, CA</div>
+                    </div>
+                    <div className="bg-warm-sand rounded-lg p-3">
+                      <div className="text-slate mb-1">Specializations</div>
+                      <div className="font-semibold text-navy">Knits, Activewear</div>
+                    </div>
+                    <div className="bg-warm-sand rounded-lg p-3">
+                      <div className="text-slate mb-1">MOQ Range</div>
+                      <div className="font-semibold text-navy">100–5,000 units</div>
+                    </div>
+                    <div className="bg-warm-sand rounded-lg p-3">
+                      <div className="text-slate mb-1">Lead Time</div>
+                      <div className="font-semibold text-navy">4–6 weeks</div>
+                    </div>
+                    <div className="bg-warm-sand rounded-lg p-3">
+                      <div className="text-slate mb-1">Equipment</div>
+                      <div className="font-semibold text-navy">Coverstitch, Overlock</div>
+                    </div>
+                    <div className="bg-warm-sand rounded-lg p-3">
+                      <div className="text-slate mb-1">Certifications</div>
+                      <div className="font-semibold text-navy">WRAP, ISO 9001</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 pt-2 border-t border-mist">
+                    <Sparkles className="w-4 h-4 text-coral" />
+                    <span className="text-xs text-slate">Match score: 94% with your Tech Spec</span>
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.2} className="order-1 lg:order-2">
+              <p className="text-teal text-xs font-semibold uppercase tracking-[0.2em] mb-3">For Manufacturers</p>
+              <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-navy mb-4">
+                Detailed Manufacturer Profile
+              </h2>
+              <p className="text-slate mb-6 leading-relaxed">
+                Showcase your factory's capabilities through a structured 5-step profile. The more details you provide, the better matches you receive.
+              </p>
+              <div className="space-y-3 mb-8">
+                {[
+                  { label: 'Company Info', desc: 'Location, years in business, team size' },
+                  { label: 'Equipment & Machinery', desc: 'Sewing machines, cutting tables, finishing equipment' },
+                  { label: 'Services & Specializations', desc: 'Product categories, techniques, value-added services' },
+                  { label: 'Capacity & MOQ', desc: 'Daily output, current utilization, min/max order sizes' },
+                  { label: 'Certifications', desc: 'WRAP, ISO, GOTS, OEKO-TEX and more' },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-coral/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-coral text-xs font-bold">{i + 1}</span>
+                    </div>
+                    <div>
+                      <span className="font-semibold text-navy text-sm">{item.label}</span>
+                      <span className="text-slate text-sm"> — {item.desc}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <Link to="/manufacturer-register" className="inline-flex items-center gap-2 bg-teal hover:bg-teal/90 text-white px-6 py-3 rounded-lg font-medium text-sm transition-all hover:scale-[1.02]">
+                Create Your Profile <ArrowRight className="w-4 h-4" />
+              </Link>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== SMART MATCHING ENGINE ========== */}
+      <section className="py-16 sm:py-24 bg-navy">
+        <div className="max-w-6xl mx-auto px-4">
+          <FadeIn className="text-center mb-12">
+            <p className="text-teal text-xs font-semibold uppercase tracking-[0.2em] mb-3">Matching Engine</p>
+            <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-white mb-4">
+              How the Smart Match Works
+            </h2>
+            <p className="text-white/60 max-w-2xl mx-auto">
+              Our algorithm evaluates compatibility across 5 weighted dimensions, scoring each manufacturer from 0 to 100. No guesswork — just data-driven matching.
+            </p>
+          </FadeIn>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { icon: Target, title: 'Product Category', weight: '40%', desc: 'Does the manufacturer specialize in your product type? Exact match = full points.', color: 'coral' },
+              { icon: BarChart3, title: 'MOQ Compatibility', weight: '25%', desc: 'Is your order size within their minimum and maximum order quantity range?', color: 'teal' },
+              { icon: Layers, title: 'Fabric Type', weight: '15%', desc: 'Do they have experience working with your specific fabric material?', color: 'coral' },
+              { icon: Cpu, title: 'Capacity Availability', weight: '10%', desc: 'How much free capacity do they currently have? Lower utilization = higher score.', color: 'teal' },
+              { icon: Settings, title: 'Timeline Fit', weight: '10%', desc: 'Can they deliver within your required timeframe? Lead time alignment matters.', color: 'coral' },
+            ].map((dim, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-white/20 transition-colors">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${dim.color === 'coral' ? 'bg-coral/20' : 'bg-teal/20'}`}>
+                      <dim.icon className={`w-5 h-5 ${dim.color === 'coral' ? 'text-coral' : 'text-teal'}`} />
+                    </div>
+                    <span className={`font-mono font-bold text-lg ${dim.color === 'coral' ? 'text-coral' : 'text-teal'}`}>{dim.weight}</span>
+                  </div>
+                  <h4 className="font-playfair font-semibold text-white mb-2">{dim.title}</h4>
+                  <p className="text-white/50 text-sm leading-relaxed">{dim.desc}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
+          {/* Score formula */}
+          <FadeIn delay={0.5} className="mt-10 text-center">
+            <div className="inline-flex items-center gap-3 bg-white/5 rounded-full px-6 py-3 border border-white/10">
+              <span className="text-white/60 text-sm">Composite Score = </span>
+              <span className="text-coral font-mono font-bold text-sm">Product</span>
+              <span className="text-white/30">+</span>
+              <span className="text-teal font-mono font-bold text-sm">MOQ</span>
+              <span className="text-white/30">+</span>
+              <span className="text-coral font-mono font-bold text-sm">Fabric</span>
+              <span className="text-white/30">+</span>
+              <span className="text-teal font-mono font-bold text-sm">Capacity</span>
+              <span className="text-white/30">+</span>
+              <span className="text-coral font-mono font-bold text-sm">Timeline</span>
+              <span className="text-white/30">=</span>
+              <span className="text-white font-mono font-bold text-sm">100</span>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* ========== FOR BRANDS ========== */}
       <section className="py-16 sm:py-24 bg-warm-sand">
         <div className="max-w-6xl mx-auto px-4">
@@ -195,11 +385,10 @@ export default function Home() {
               </h2>
               <ul className="space-y-4 mb-8">
                 {[
-                  'AI-powered matching based on your tech spec',
-                  'Real-time capacity visibility from factories',
-                  'Verified manufacturer network with reviews',
-                  'Direct chat with matched manufacturers',
-                  'Free to start — premium features from $79/week',
+                  'AI-powered matching based on your structured tech spec',
+                  'Browse manufacturer profiles with full equipment & capacity details',
+                  'Real-time chat with file sharing and tech spec references',
+                  'Free to start — premium unlocks unlimited matching and priority',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-teal flex-shrink-0 mt-0.5" />
@@ -215,9 +404,9 @@ export default function Home() {
             <FadeIn delay={0.2}>
               <div className="grid gap-4">
                 {[
-                  { title: 'Smart Matching', desc: 'Algorithm analyzes 50+ parameters to find your ideal manufacturer.', icon: Search },
-                  { title: 'Live Capacity', desc: 'See real-time factory availability and production slots.', icon: Factory },
-                  { title: 'Verified Network', desc: 'All manufacturers are vetted and verified by our team.', icon: CheckCircle },
+                  { title: 'Structured Tech Spec', desc: 'A complete technical specification that manufacturers can quote from instantly.', icon: FileText },
+                  { title: 'Smart Matching', desc: 'Algorithm analyzes 5 dimensions to find your best-fit manufacturers.', icon: Search },
+                  { title: 'Verified Profiles', desc: 'Every manufacturer profile includes equipment, capacity, and certifications.', icon: CheckCircle },
                 ].map((card, i) => (
                   <div key={i} className="bg-white rounded-xl p-6 shadow-card hover:shadow-card-hover transition-shadow border border-mist">
                     <div className="w-10 h-10 bg-teal/10 rounded-lg flex items-center justify-center mb-4">
@@ -241,8 +430,8 @@ export default function Home() {
               <div className="relative rounded-2xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #0F1B2D, #0D7377)' }}>
                 <div className="p-12 text-center">
                   <Factory className="w-16 h-16 text-teal mx-auto mb-4" />
-                  <div className="font-playfair text-5xl font-bold text-white mb-2">350+</div>
-                  <p className="text-white/70">Verified manufacturers already on the platform</p>
+                  <div className="font-playfair text-5xl font-bold text-white mb-2">OEM Match</div>
+                  <p className="text-white/70">Connect with brands that need exactly what you make</p>
                 </div>
               </div>
             </FadeIn>
@@ -250,15 +439,15 @@ export default function Home() {
             <FadeIn delay={0.2} className="order-1 lg:order-2">
               <p className="text-teal text-xs font-semibold uppercase tracking-[0.2em] mb-3">For Manufacturers</p>
               <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-navy mb-6">
-                Fill Your Production Capacity
+                Get Matched with Qualified Brand Leads
               </h2>
               <ul className="space-y-4 mb-8">
                 {[
-                  'List your equipment, specializations, and capacity',
-                  'Get matched with brands looking for your exact capabilities',
-                  'Update capacity daily for accurate matching',
-                  'Free profile listing — verification available',
-                  'Communicate directly with interested brands',
+                  'List your equipment, specializations, and capacity in detail',
+                  'Receive inbound leads from brands matched to your capabilities',
+                  'Update capacity daily for accurate, real-time matching',
+                  'Free profile listing — optional verification badge available',
+                  'Communicate directly with interested brands via in-platform chat',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-teal flex-shrink-0 mt-0.5" />
@@ -274,46 +463,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ========== TESTIMONIALS ========== */}
-      <section className="py-16 sm:py-24 bg-warm-sand">
-        <div className="max-w-6xl mx-auto px-4">
-          <FadeIn className="text-center mb-12">
-            <p className="text-teal text-xs font-semibold uppercase tracking-[0.2em] mb-3">Testimonials</p>
-            <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-navy">Trusted by Industry Leaders</h2>
-          </FadeIn>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { name: 'Sarah Chen', role: 'Founder, Loom Studio', text: 'SewMatch helped us find the perfect cut-and-sew partner in LA. Our first production run was flawless.', stars: 5 },
-              { name: 'Mike Torres', role: 'CEO, Pacific Apparel Co.', text: 'We went from 60% capacity to 95% in three months thanks to the steady stream of qualified brand leads.', stars: 5 },
-              { name: 'Jessica Park', role: 'Design Director, Forma', text: 'The tech spec builder saved us weeks of back-and-forth. Matched with a factory that nailed our activewear line.', stars: 5 },
-            ].map((t, i) => (
-              <FadeIn key={i} delay={i * 0.1}>
-                <div className={`bg-white rounded-xl p-6 shadow-card border-t-4 ${i === 1 ? 'border-teal' : 'border-coral'}`}>
-                  <div className="flex gap-1 mb-4">
-                    {Array.from({ length: t.stars }).map((_, j) => (
-                      <Star key={j} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-slate text-sm leading-relaxed mb-6 italic">"{t.text}"</p>
-                  <div className="flex items-center gap-3">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-semibold ${i === 1 ? 'bg-teal' : 'bg-coral'}`}>
-                      {t.name.charAt(0)}
-                    </div>
-                    <div>
-                      <div className="font-semibold text-navy text-sm">{t.name}</div>
-                      <div className="text-slate text-xs">{t.role}</div>
-                    </div>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ========== PRICING PREVIEW ========== */}
-      <section className="py-16 sm:py-24 bg-white">
+      <section className="py-16 sm:py-24 bg-warm-sand">
         <div className="max-w-6xl mx-auto px-4">
           <FadeIn className="text-center mb-12">
             <p className="text-teal text-xs font-semibold uppercase tracking-[0.2em] mb-3">Pricing</p>
@@ -323,7 +474,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* For Brands */}
             <FadeIn>
-              <div className="bg-warm-sand rounded-xl p-8 border-l-4 border-coral">
+              <div className="bg-white rounded-xl p-8 border-l-4 border-coral">
                 <h3 className="font-playfair text-xl font-semibold text-navy mb-4">For Brands</h3>
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between text-sm">
@@ -341,7 +492,7 @@ export default function Home() {
 
             {/* For Manufacturers */}
             <FadeIn delay={0.1}>
-              <div className="bg-warm-sand rounded-xl p-8 border-l-4 border-teal">
+              <div className="bg-white rounded-xl p-8 border-l-4 border-teal">
                 <h3 className="font-playfair text-xl font-semibold text-navy mb-4">For Manufacturers</h3>
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between text-sm">
@@ -366,7 +517,7 @@ export default function Home() {
           <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-white mb-4">
             Ready to Find Your Perfect Manufacturing Partner?
           </h2>
-          <p className="text-white/70 mb-8">Join 2,000+ brands and 500+ manufacturers on SewMatch today.</p>
+          <p className="text-white/70 mb-8">Create your profile and start matching today.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/brand-register" className="bg-coral hover:bg-coral/90 text-white px-8 py-3 rounded-lg font-medium text-sm transition-all hover:scale-[1.02]">
               I'm a Brand
