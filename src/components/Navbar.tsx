@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Factory, Shirt } from 'lucide-react'
+import { Menu, X, Factory } from 'lucide-react'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
