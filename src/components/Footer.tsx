@@ -13,11 +13,11 @@ export default function Footer() {
                 <Factory className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold font-playfair">
-                Sew<span className="text-teal">Match</span>
+                OEM<span className="text-teal">Match</span>
               </span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed">
-              Connecting Private Label brands with verified OEM textile manufacturers across the United States.
+              B2B marketplace connecting Private Label brands with verified OEM textile manufacturers.
             </p>
           </div>
 
@@ -47,13 +47,13 @@ export default function Footer() {
             <ul className="space-y-3">
               <li><Link to="/about" className="text-white/60 hover:text-teal text-sm transition-colors">About</Link></li>
               <li><Link to="/pricing" className="text-white/60 hover:text-teal text-sm transition-colors">Pricing</Link></li>
-              <li><span className="text-white/60 text-sm">Contact: hello@sewmatch.com</span></li>
+              <li><span className="text-white/60 text-sm">Contact: hello@oemmatch.com</span></li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-white/10 mt-12 pt-8 text-center text-white/40 text-sm">
-          &copy; 2026 SewMatch. All rights reserved.
+          &copy; 2026 OEM Match. All rights reserved.
         </div>
       </div>
     </footer>
