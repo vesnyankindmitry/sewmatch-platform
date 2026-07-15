@@ -11,7 +11,6 @@ import {
   ArrowRight,
   Check,
   Layers,
-  Cpu,
   Target,
   BarChart3,
   Settings,
@@ -336,7 +335,7 @@ export default function Home() {
               { icon: Target, title: 'Product Category', weight: '40%', desc: 'Does the manufacturer specialize in your product type? Exact match = full points.', color: 'coral' },
               { icon: BarChart3, title: 'MOQ Compatibility', weight: '25%', desc: 'Is your order size within their minimum and maximum order quantity range?', color: 'teal' },
               { icon: Layers, title: 'Fabric Type', weight: '15%', desc: 'Do they have experience working with your specific fabric material?', color: 'coral' },
-              { icon: Cpu, title: 'Capacity Availability', weight: '10%', desc: 'How much free capacity do they currently have? Lower utilization = higher score.', color: 'teal' },
+              { icon: Settings, title: 'Capacity Availability', weight: '10%', desc: 'How much free capacity do they currently have? Lower utilization = higher score.', color: 'teal' },
               { icon: Settings, title: 'Timeline Fit', weight: '10%', desc: 'Can they deliver within your required timeframe? Lead time alignment matters.', color: 'coral' },
             ].map((dim, i) => (
               <FadeIn key={i} delay={i * 0.1}>
